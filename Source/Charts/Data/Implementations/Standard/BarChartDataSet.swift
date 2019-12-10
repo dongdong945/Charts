@@ -159,6 +159,10 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     open var barGradientColors: [NSUIColor]?
     
     open var barGradientOrientation: BarGradientOrientation = .vertical
+
+    //是否设置圆角
+    open var isDrawRoundedBarEnabled: Bool = false
+    
     
     /// - returns: The gradient colors at the given index of the DataSet's gradient color array.
     /// This prevents out-of-bounds by performing a modulus on the gradient color index, so colours will repeat themselves.
@@ -181,6 +185,7 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
         copy.barBorderWidth = barBorderWidth
         copy.barBorderColor = barBorderColor
         copy.highlightAlpha = highlightAlpha
+        
         return copy
     }
 }

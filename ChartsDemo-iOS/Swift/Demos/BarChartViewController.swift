@@ -148,11 +148,12 @@ class BarChartViewController: DemoBaseViewController {
      override func optionTapped(_ option: Option) {
          switch option {
          case .toggleBarGradient:
-             for set in chartView.data!.dataSets as! [BarChartDataSet] {
-                 if set.barGradientColors == nil {
+            for set in chartView.data!.dataSets as! [BarChartDataSet] {
+                if set.barGradientColors == nil {
+                    set.isDrawRoundedBarEnabled = true //设置圆角
                     set.barGradientColors = [UIColor.red, UIColor.blue]
-                 } else {
-                     set.barGradientColors = nil
+                } else {
+                    set.barGradientColors = nil
                  }
              }
              chartView.notifyDataSetChanged()
