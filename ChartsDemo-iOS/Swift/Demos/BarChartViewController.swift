@@ -150,7 +150,7 @@ class BarChartViewController: DemoBaseViewController {
          case .toggleBarGradient:
              for set in chartView.data!.dataSets as! [BarChartDataSet] {
                  if set.barGradientColors == nil {
-                     set.barGradientColors = ChartColorTemplates.gradients()
+                    set.barGradientColors = [UIColor.red, UIColor.blue]
                  } else {
                      set.barGradientColors = nil
                  }

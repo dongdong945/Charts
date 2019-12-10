@@ -466,7 +466,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
         context.saveGState()
         defer { context.restoreGState() }
         
-        if let gradientColor = dataSet.barGradientColor(at: index)
+        if let gradientColor = dataSet.barGradientColors
         {
             drawGradient(context: context, barRect: barRect, gradientColors: gradientColor, orientation: dataSet.barGradientOrientation)
         }
