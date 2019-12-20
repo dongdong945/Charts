@@ -47,6 +47,12 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     var barGradientOrientation: BarGradientOrientation { get set }
     //设置圆角
     var isDrawRoundedBarEnabled: Bool { get set }
+    //单个entry的渐变色
+    var singleEntryGradientColors: [NSUIColor]?  { get set }
+    //单个entry的索引
+    var singleEntryGradientIndex: Int  { get set }
+     
+    
     /// - returns: The gradient colors at the given index of the DataSet's gradient color array.
     /// This prevents out-of-bounds by performing a modulus on the gradient color index, so colours will repeat themselves.
    // func barGradientColor(at index: Int) -> [NSUIColor]?

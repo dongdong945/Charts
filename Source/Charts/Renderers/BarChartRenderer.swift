@@ -465,13 +465,31 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
     {
         context.saveGState()
         defer { context.restoreGState() }
-        
-        if let gradientColor = dataSet.barGradientColors
-        {
-            drawGradient(context: context, barRect: barRect, gradientColors: gradientColor, dataSet: dataSet)
+
+        //优先级singleEntryGradientColors 》 barGradientColors
+        var isDrawSingleEntryGradientEnabled = false
+        if index == dataSet.singleEntryGradientIndex {
+            if let _ = dataSet.singleEntryGradientColors {
+               isDrawSingleEntryGradientEnabled = true
+            }
         }
-        else
-        {
+        
+        var isDrawAllBarGradientEnabled = false
+        if let _ = dataSet.barGradientColors {
+            isDrawAllBarGradientEnabled = true
+        }
+        
+        
+        if isDrawSingleEntryGradientEnabled {
+            if let singleEntryGradientColors = dataSet.singleEntryGradientColors {
+                drawGradient(context: context, barRect: barRect, gradientColors: singleEntryGradientColors, dataSet: dataSet)
+            }
+        }
+        else if isDrawAllBarGradientEnabled {
+            if let gradientColor = dataSet.barGradientColors {
+                drawGradient(context: context, barRect: barRect, gradientColors: gradientColor, dataSet: dataSet)
+            }
+        } else {
             if  dataSet.isDrawRoundedBarEnabled
             {
                 let cornerRadius = CGSize(width:barRect.width / 2.0, height: 0)

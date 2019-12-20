@@ -155,15 +155,16 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
     /// the alpha value (transparency) that is used for drawing the highlight indicator bar. min = 0.0 (fully transparent), max = 1.0 (fully opaque)
     open var highlightAlpha = CGFloat(120.0 / 255.0)
     
-    /// array of gradient colors [color1, color2]
+    /// 渐变色
     open var barGradientColors: [NSUIColor]?
-    
+    // 渐变方向
     open var barGradientOrientation: BarGradientOrientation = .vertical
-
     //是否设置圆角
     open var isDrawRoundedBarEnabled: Bool = false
-    
-    
+    //单个entry的渐变色
+    open  var singleEntryGradientColors: [NSUIColor]?
+    //单个entry的索引
+    open var singleEntryGradientIndex: Int  = 0
     /// - returns: The gradient colors at the given index of the DataSet's gradient color array.
     /// This prevents out-of-bounds by performing a modulus on the gradient color index, so colours will repeat themselves.
 //    open func barGradientColor(at index: Int) -> [NSUIColor]?

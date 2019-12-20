@@ -152,6 +152,8 @@ class BarChartViewController: DemoBaseViewController {
                 if set.barGradientColors == nil {
                     set.isDrawRoundedBarEnabled = true //设置圆角
                     set.barGradientColors = [UIColor.red, UIColor.blue]
+                    set.singleEntryGradientColors = [UIColor.orange, UIColor.gray]
+                    set.singleEntryGradientIndex = 2
                 } else {
                     set.barGradientColors = nil
                  }
