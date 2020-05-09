@@ -37,7 +37,8 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
     
     private var _scaleXEnabled = true
     private var _scaleYEnabled = true
-    
+    //Fix BUG：滑动的时候也会触发drawMarkers()方法，应该只有在点击的时候才显示marker
+    private var _allowDrawMarkerWhenTap = false
     /// the color for the background of the chart-drawing area (everything behind the grid lines).
     @objc open var gridBackgroundColor = NSUIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
     
@@ -280,8 +281,10 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         _legendRenderer.renderLegend(context: context)
 
         drawDescription(context: context)
-        
-        drawMarkers(context: context)
+        if _allowDrawMarkerWhenTap {
+            _allowDrawMarkerWhenTap = false
+            drawMarkers(context: context)
+        }
     }
     
     private var _autoScaleLastLowestVisibleX: Double?
@@ -541,7 +544,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             if !isHighLightPerTapEnabled { return }
             
             let h = getHighlightByTouchPoint(recognizer.location(in: self))
-            
+            _allowDrawMarkerWhenTap = true
             if h === nil || h == self.lastHighlighted
             {
                 lastHighlighted = nil
