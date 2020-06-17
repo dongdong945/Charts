@@ -305,7 +305,7 @@ open class PieChartRenderer: DataRenderer
         let phaseX = animator.phaseX
         let phaseY = animator.phaseY
 
-        var labelRadiusOffset = radius / 10.0 * 3.0
+        var labelRadiusOffset = radius / 10.0 * 5.0
 
         if chart.drawHoleEnabled
         {
@@ -517,7 +517,11 @@ open class PieChartRenderer: DataRenderer
                 {
                     // calculate the text position
                     let x = labelRadius * sliceXBase + center.x
-                    let y = labelRadius * sliceYBase + center.y - lineHeight
+                    var y = labelRadius * sliceYBase + center.y - lineHeight
+                    if dataSet.entryCount == 1 {
+                        // 如果当前就一项，让其剧中
+                        y = center.y - lineHeight/2
+                    }
 
                     if drawXInside && drawYInside
                     {
